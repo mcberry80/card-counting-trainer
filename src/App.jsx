@@ -42,17 +42,44 @@ function shuffle(shoe) {
   return shoe;
 }
 
+function dealCard(shoe) {
+  return shoe.pop();
+}
+
+const Card = ({card}) => {
+  console.log(card);
+  return (
+    <div>{card.rank}{card.suit}:  {card.count}</div>
+    );
+}
+
+
 function App() {
+
+  const [count, setCount] = useState(0);
+
   let shoe = [];
   shoe = shuffle(buildShoe());
+  
+  let newCard;
+  newCard = dealCard(shoe);
+  const [card, setCard] = useState(null);
+
+
+  const handleDealCard = () => {
+    let newCard;
+    newCard = dealCard(shoe);
+    setCount(count + newCard.count);
+    setCard(newCard)
+  };
 
   return (
     <div className="App">
-      {shoe.map((card) => (
-        <div>
-          {card.rank}{card.suit}:  {card.count}
-        </div>
-      ))}
+      <button type="button" onClick={handleDealCard}>Deal Card</button>
+      <div>
+        {card && <Card card={card} />}
+        Running Count: {count}
+      </div> 
     </div>
   )
 }
