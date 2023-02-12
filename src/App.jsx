@@ -2,8 +2,8 @@ import { useState } from 'react'
 import './App.css'
 
 function buildShoe() {
-  const suits = ["h", "d", "c", "s"];
-  const values = ["2", "3", "4", "5", "6", "7", "8", "9", "10", "J", "Q", "K", "A"];
+  const suits = ["hearts", "diamonds", "clubs", "spades"];
+  const values = ["2", "3", "4", "5", "6", "7", "8", "9", "10", "jack", "queen", "king", "ace"];
 
   let deck = [];
 
@@ -47,9 +47,10 @@ function dealCard(shoe) {
 }
 
 const Card = ({card}) => {
-  console.log(card);
   return (
-    <div>{card.rank}{card.suit}:  {card.count}</div>
+    <div className='Card'>
+      <img src = {'/src/assets/' + card.rank + '_of_' + card.suit + '.png'}  />
+    </div>
     );
 }
 
